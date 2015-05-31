@@ -1,0 +1,8 @@
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\bin\Debug\NameMatch.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\bin\Debug\NameMatch.pdb
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\bin\Debug\FuzzyString.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\obj\Debug\NameMatch.csprojResolveAssemblyReference.cache
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\obj\Debug\NameMatch.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\obj\Debug\NameMatch.pdb
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\bin\Debug\Objects.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\NameMatch\bin\Debug\Objects.pdb

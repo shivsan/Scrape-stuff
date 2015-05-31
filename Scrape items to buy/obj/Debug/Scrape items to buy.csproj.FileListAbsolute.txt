@@ -1,0 +1,16 @@
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\Scrape items to buy.exe.config
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\Scrape items to buy.exe
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\Scrape items to buy.pdb
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\NetUtils.dll
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\NetUtils.pdb
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\obj\Debug\Scrape items to buy.csprojResolveAssemblyReference.cache
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\obj\Debug\Scrape items to buy.exe
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\obj\Debug\Scrape items to buy.pdb
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\HtmlAgilityPack.dll
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\HtmlAgilityPack.pdb
+c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\FuzzyString.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\NameMatch.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\NameMatch.pdb
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\Objects.dll
+C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Scrape items to buy\bin\Debug\Objects.pdb
