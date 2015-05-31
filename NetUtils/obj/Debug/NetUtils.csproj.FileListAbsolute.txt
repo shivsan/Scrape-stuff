@@ -1,8 +1,0 @@
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\bin\Debug\NetUtils.dll
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\bin\Debug\NetUtils.pdb
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\obj\Debug\NetUtils.csprojResolveAssemblyReference.cache
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\obj\Debug\NetUtils.dll
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\obj\Debug\NetUtils.pdb
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\bin\Debug\HtmlAgilityPack.dll
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\bin\Debug\HtmlAgilityPack.pdb
-c:\users\siva\documents\visual studio 2015\Projects\Scrape items to buy\NetUtils\bin\Debug\HtmlAgilityPack.xml

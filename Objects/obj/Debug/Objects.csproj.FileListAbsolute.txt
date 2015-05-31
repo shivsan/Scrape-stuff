@@ -1,5 +1,0 @@
-C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Objects\bin\Debug\Objects.dll
-C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Objects\bin\Debug\Objects.pdb
-C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Objects\obj\Debug\Objects.csprojResolveAssemblyReference.cache
-C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Objects\obj\Debug\Objects.dll
-C:\Users\Siva\Documents\Visual Studio 2015\Projects\Scrape items to buy\Objects\obj\Debug\Objects.pdb
