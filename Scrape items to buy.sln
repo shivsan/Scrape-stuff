@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrape items to buy", "Scra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetUtils", "NetUtils\NetUtils.csproj", "{723BF792-6AB9-46F4-A886-5E845B111F5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameMatch", "NameMatch\NameMatch.csproj", "{5088F8B1-D151-45CB-9A17-DF0E6C09402E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameUtils", "NameMatch\NameUtils.csproj", "{5088F8B1-D151-45CB-9A17-DF0E6C09402E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objects", "Objects\Objects.csproj", "{EB0497E8-A395-46B2-B4F9-E01444473C8C}"
 EndProject

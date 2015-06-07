@@ -17,15 +17,24 @@ namespace c
 
             foreach(var website in websitesToSearch)
             {
-                var productName = "Assassin's creed revelations PS3";
+                var productName = args[0];
                 website.ProductName = productName;
-                var product = website.GetProduct();
 
-                if(product.Price < LowestRetailPrice)
+                //Fails in case the product is not available
+                try
                 {
-                    lowestRetailProduct = product;
-                    lowestRetailWebsite = website;
-                    LowestRetailPrice = product.Price;
+                    var product = website.GetProduct();
+
+                    if (product != null && product.Price!=0 && product.Price < LowestRetailPrice)
+                    {
+                        lowestRetailProduct = product;
+                        lowestRetailWebsite = website;
+                        LowestRetailPrice = product.Price;
+                    }
+                }
+                finally
+                {
+
                 }
             }
         }
@@ -36,6 +45,9 @@ namespace c
             websitesToSearch.Add(new FlipKart());
             websitesToSearch.Add(new Amazon());
             websitesToSearch.Add(new SnapDeal());
+            websitesToSearch.Add(new quikr());
+            websitesToSearch.Add(new Olx());
+            websitesToSearch.Add(new eBay());
             return websitesToSearch;
         }
     }

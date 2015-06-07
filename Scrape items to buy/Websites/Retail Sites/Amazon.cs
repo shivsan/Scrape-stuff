@@ -51,7 +51,7 @@ namespace Scrape_items_to_buy.Websites.Sites
                     var aHrefChild = node.SelectSingleNode("//*[@id=\"result_0\"]/div/div/div/div[2]/div[1]").ChildNodes["a"];
                     var title = aHrefChild.Attributes["title"].Value;
 
-                    if (title.Contains("PS3"))
+                    if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                     {
                         return aHrefChild.Attributes["href"].Value;
                     }
@@ -65,7 +65,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return string.Empty;
         }
 
-        public int GetPrice(string htmlBody)
+        public override int GetPrice(string htmlBody)
         {
             //*[@id=\"fk-mainbody-id\"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/div/span[1]
             //*[@id="fk-mainbody-id"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/span[1]
@@ -75,8 +75,22 @@ namespace Scrape_items_to_buy.Websites.Sites
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
-            var nodes = root.SelectSingleNode("//*[@id=\"priceblock_ourprice\"]/text()");
-            var price = Convert.ToInt32(Convert.ToDecimal(nodes.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
+            var node = root.SelectSingleNode("//*[@id=\"priceblock_ourprice\"]/text()");
+
+            if(node == null)
+            {
+                //In case of sale
+                node = root.SelectSingleNode("//*[@id=\"priceblock_saleprice\"]/text()");
+            }
+
+            //*[@id="olp_feature_div"]/div/span/span/text()
+            if (node == null)
+            {
+                //In case of sale
+                node = root.SelectSingleNode("//*[@id='olp_feature_div']/div/span/span/text()");
+            }
+
+            var price = Convert.ToInt32(Convert.ToDecimal(node.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
             return price;
         }
 

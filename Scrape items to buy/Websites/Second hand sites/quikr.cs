@@ -8,6 +8,7 @@ using HtmlAgilityPack;
 using NameMatch;
 using Objects.Websites;
 using Objects.Websites.Sites;
+using NameUtils;
 
 namespace Scrape_items_to_buy.Websites.Sites
 {
@@ -17,47 +18,72 @@ namespace Scrape_items_to_buy.Websites.Sites
         public override Product GetProduct()
         {
             var response = Web.GetHTTPResponse(SearchURL(ProductName));
+
+            if(response.Contains("Unfortunately, there are no ads in this category right now."))
+            {
+                //Remove the price sort                
+                response = Web.GetHTTPResponse(SearchURLNoSort(ProductName));
+            }
+
             string pageURL = GetPageURL(response);
             var product = new Product();
-            var webPageData = Web.GetHTTPResponse(pageURL);
-            product.Price = GetPrice(webPageData);
-            product.Url = pageURL;
+
+            if (!string.IsNullOrEmpty(pageURL))
+            {
+                var webPageData = Web.GetHTTPResponse(pageURL);
+                product.Price = GetPrice(webPageData);
+                product.Url = pageURL;
+            }
+            
             //product.RetailName = GetProductTitle(webPageData);
             return product;
         }
 
         public override string ParseProductName(string productName)
         {
-            return HttpUtility.UrlEncode(productName);
+            productName = NameReplace.ReplacePunctuation(productName, " ");
+            return HttpUtility.UrlEncode(productName.Replace(" ", "-"));
         }
 
         public override string SearchURL(string productName)
         {
             //This is in the game section, sorted by price
-            return string.Format("http://www.snapdeal.com/search?keyword={0}&catId=&categoryId=2426&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&cityPageUrl=&url=&utmContent=&catalogID=", ParseProductName(productName));
+            return string.Format("http://bangalore.quikr.com/{0}-video-games-consoles/{0}/x23?order=priceAsc", ParseProductName(productName).ToLower());
+        }
+
+        public string SearchURLNoSort(string productName)
+        {
+            //This is in the game section, sorted by price
+            return string.Format("http://bangalore.quikr.com/{0}-video-games-consoles/{0}/x23", ParseProductName(productName).ToLower());
         }
 
         public string GetPageURL(string htmlBody)
         {
-            //*[@id="675441"]/div/div[5]/div[1]/div/div[1]/div/a[1]
+            ////div[@id=\"a1d1container\"]
+
             var products = new List<Product>();
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
 
-            //Get all pages as SnapDeal's search is not so great
-            //var nodes = root.SelectNodes("//*[@id=\"content_wrapper\"]/div[3]/div[2]")[0].SelectNodes("//div[@class=\"product-title\"]");
-            var nodes = root.SelectNodes("//div[@class=\"product-title\"]");
+            //Get all pages as quikr's search is not so great            
+            var adNode = root.SelectSingleNode("//*[@id=\"a1d1container\"]");
 
-            foreach(var node in nodes)
+            var adNodes = adNode.SelectNodes("//div[@class=\"snb_entire_ad ad \"]");
+
+            foreach (var node in adNodes)
             {
-                var title = node.InnerText.Trim();
+                //*[@id="ad210808315"]/div[1]/div[2]/div[1]/h3/a
+                //*[@id="ad214637183"]/div[1]/div[2]/div[1]/h3/a
+                //a[@class='adttllnk unbold']
+                //div[1] / div[2] / div[1] / h3 / a
+                var ad = node.SelectSingleNode("//h3[@class='adtitlesnb translate']");
+                var title = ad.InnerText;
 
-                if (title.ToUpper().Contains("PS3"))
+                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
-                    var urlNode = node.ChildNodes["a"];
-                    var gameTitle = urlNode.InnerText.Trim();
-
+                    var urlNode = ad.SelectSingleNode("a");
+                    var gameTitle = urlNode.Attributes["title"].Value.Trim();
                     
                     var url = urlNode.Attributes["href"].Value;
                     
@@ -73,14 +99,14 @@ namespace Scrape_items_to_buy.Websites.Sites
             return bestProduct != null? bestProduct.Url : string.Empty;
         }
 
-        public int GetPrice(string htmlBody)
+        public override int GetPrice(string htmlBody)
         {
 
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
-            var node = root.SelectSingleNode("//*[@id=\"selling-price-id\"]");
-            var price = Convert.ToInt32(node.InnerText);
+            var node = root.SelectSingleNode("//span[@class=\"price\"]");
+            var price = Convert.ToInt32(node.InnerHtml.Replace("Rs.", "").Replace(",", "").Trim());
             return price;
         }
 

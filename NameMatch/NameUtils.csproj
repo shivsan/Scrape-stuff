@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C5F134D-480F-440A-9B37-8C5EC9F7777B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{5088F8B1-D151-45CB-9A17-DF0E6C09402E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Scrape_items_to_buy</RootNamespace>
-    <AssemblyName>Scrape items to buy</AssemblyName>
+    <RootNamespace>NameMatch</RootNamespace>
+    <AssemblyName>NameMatch</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,16 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FuzzyString">
-      <HintPath>..\NameMatch\FuzzyString.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="FuzzyString, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\FuzzyString.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,28 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scrape Program.cs" />
+    <Compile Include="NameMatch.cs" />
+    <Compile Include="NameUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Websites\Retail Sites\Amazon.cs" />
-    <Compile Include="Websites\Retail Sites\SnapDeal.cs" />
-    <Compile Include="Websites\Retail Sites\FlipKart.cs" />
-    <Compile Include="Websites\Second hand sites\eBay.cs" />
-    <Compile Include="Websites\Second hand sites\Olx.cs" />
-    <Compile Include="Websites\Second hand sites\quikr.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Content Include="FuzzyString.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NameMatch\NameUtils.csproj">
-      <Project>{5088f8b1-d151-45cb-9a17-df0e6c09402e}</Project>
-      <Name>NameUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetUtils\NetUtils.csproj">
-      <Project>{723bf792-6ab9-46f4-a886-5e845b111f5f}</Project>
-      <Name>NetUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Objects\Objects.csproj">
       <Project>{eb0497e8-a395-46b2-b4f9-e01444473c8c}</Project>
       <Name>Objects</Name>

@@ -12,6 +12,9 @@ namespace NetUtils
     {
         public static string GetHTTPResponse(string url)
         {
+            if (string.IsNullOrEmpty(url))
+                return string.Empty;
+
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
             request.ContentType = "application/x-www-form-urlencoded";

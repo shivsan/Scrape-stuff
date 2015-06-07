@@ -49,7 +49,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             {
                 var title = node.Attributes["title"].Value;
 
-                if(title.Contains("PS3"))
+                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
                     return "http://www.flipkart.com" + node.Attributes["href"].Value;
                 }
@@ -59,7 +59,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return string.Empty;
         }
 
-        public int GetPrice(string htmlBody)
+        public override int GetPrice(string htmlBody)
         {
             //*[@id=\"fk-mainbody-id\"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/div/span[1]
             //*[@id="fk-mainbody-id"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/span[1]
@@ -69,7 +69,11 @@ namespace Scrape_items_to_buy.Websites.Sites
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
-            var nodes = root.SelectSingleNode("//span[@class='price'] ");
+            var nodes = root.SelectSingleNode("//span[@class='price']");
+            if(nodes==null)
+            {
+                nodes = root.SelectSingleNode("//span[@class='selling-price omniture-field']");
+            }
             var price = Convert.ToInt32(nodes.InnerHtml.Replace("Rs. ","").Replace(",",""));
             return price;
         }

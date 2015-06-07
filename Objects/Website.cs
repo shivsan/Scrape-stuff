@@ -12,5 +12,6 @@ namespace Objects.Websites.Sites
         public abstract string ParseProductName(string productName);
         public abstract string SearchURL(string productName);
         public string ProductName;
+        public abstract int GetPrice(string body);
     }
 }

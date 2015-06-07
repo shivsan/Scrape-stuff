@@ -33,49 +33,41 @@ namespace Scrape_items_to_buy.Websites.Sites
         public override string SearchURL(string productName)
         {
             //This is in the game section, sorted by price
-            return string.Format("http://www.amazon.in/s/ref=nb_sb_noss_2?url=node%3D1376877031&field-keywords={0}", ParseProductName(productName));
+            return string.Format("http://www.ebay.in/sch/Video-Computer-Games-/176299/i.html?_nkw={0}&_sop=15&LH_BIN=1", ParseProductName(productName));
         }
 
         public string GetPageURL(string htmlBody)
         {
-            ////*[@id="products"]/div/div[1]/div[1]
-            //*[@id="atfResults"]
+            //*[@id=\"ResultSetItems\"]
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
-            var nodes = root.SelectNodes("//*[@id=\"atfResults\"]");
-            if (nodes != null)
+            var nodes = root.SelectNodes("//*[@id=\"ListViewInner\"]");
+            
+            var adNodes = root.SelectNodes("//h3[@class=\"lvtitle\"]");            
+
+            foreach (var node in adNodes)
             {
-                foreach (var node in nodes)
+                var aHrefChild = node.ChildNodes["a"];
+                var title = aHrefChild.InnerText;
+
+                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
-                    var aHrefChild = node.SelectSingleNode("//*[@id=\"result_0\"]/div/div/div/div[2]/div[1]").ChildNodes["a"];
-                    var title = aHrefChild.Attributes["title"].Value;
-
-                    if (title.Contains("PS3"))
-                    {
-                        return aHrefChild.Attributes["href"].Value;
-                    }
-
+                    return aHrefChild.Attributes["href"].Value;
                 }
-            }
-            else
-            {
 
             }
             return string.Empty;
         }
 
-        public int GetPrice(string htmlBody)
+        public override int GetPrice(string htmlBody)
         {
-            //*[@id=\"fk-mainbody-id\"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/div/span[1]
-            //*[@id="fk-mainbody-id"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/span[1]
-            //*[@id="fk-mainbody-id"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/div/span[1]
-            //root.SelectSingleNode("//*[@id=\"fk-mainbody-id\"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div")
-
+            //*[@id="prcIsum"]
+            //*[@id="prcIsum"]
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
-            var nodes = root.SelectSingleNode("//*[@id=\"priceblock_ourprice\"]/text()");
+            var nodes = root.SelectSingleNode("//*[@id=\"prcIsum\"]");
             var price = Convert.ToInt32(Convert.ToDecimal(nodes.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
             return price;
         }

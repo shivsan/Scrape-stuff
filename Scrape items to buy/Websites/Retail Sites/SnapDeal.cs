@@ -47,33 +47,34 @@ namespace Scrape_items_to_buy.Websites.Sites
 
             //Get all pages as SnapDeal's search is not so great
             //var nodes = root.SelectNodes("//*[@id=\"content_wrapper\"]/div[3]/div[2]")[0].SelectNodes("//div[@class=\"product-title\"]");
-            var nodes = root.SelectNodes("//div[@class=\"product-title\"]");
+            var nodes = root.SelectNodes("//div[@class=\"hoverProductWrapper product-txtWrapper  \"]");
 
             foreach(var node in nodes)
             {
-                var title = node.InnerText.Trim();
+                var title = node.SelectSingleNode("div[1]").InnerText.Trim();
 
-                if (title.ToUpper().Contains("PS3"))
+                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
-                    var urlNode = node.ChildNodes["a"];
+                    var urlNode = node.SelectSingleNode("div[1]").ChildNodes["a"];
                     var gameTitle = urlNode.InnerText.Trim();
-
-                    
+                                        
                     var url = urlNode.Attributes["href"].Value;
-                    
+                    var price = Convert.ToInt32((node.SelectSingleNode("a/div[2]/div/span")).InnerHtml.Replace("Rs","").Trim());
+
                     products.Add(new Product()
                     {
                         RetailName = gameTitle,
-                        Url = url
+                        Url = url,
+                        Price = price
                     });
                 }
             }
 
-            var bestProduct = NameMatching.BestProduct(products, ProductName, 0.8);
+            var bestProduct = NameMatching.BestProduct(products, ProductName, 0.8, this);
             return bestProduct != null? bestProduct.Url : string.Empty;
         }
 
-        public int GetPrice(string htmlBody)
+        public override int GetPrice(string htmlBody)
         {
 
             var doc = new HtmlDocument();
