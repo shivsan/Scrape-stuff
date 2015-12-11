@@ -59,7 +59,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return string.Empty;
         }
 
-        public override int GetPrice(string htmlBody)
+        public override double GetPrice(string htmlBody)
         {
             //*[@id=\"fk-mainbody-id\"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/div/span[1]
             //*[@id="fk-mainbody-id"]/div/div[8]/div/div[3]/div/div/div[4]/div/div[2]/div[1]/div/div[1]/div/div[1]/span[1]

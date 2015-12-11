@@ -74,7 +74,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return bestProduct != null? bestProduct.Url : string.Empty;
         }
 
-        public override int GetPrice(string htmlBody)
+        public override double GetPrice(string htmlBody)
         {
 
             var doc = new HtmlDocument();

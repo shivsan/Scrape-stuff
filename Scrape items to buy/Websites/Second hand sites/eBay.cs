@@ -60,7 +60,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return string.Empty;
         }
 
-        public override int GetPrice(string htmlBody)
+        public override double GetPrice(string htmlBody)
         {
             //*[@id="prcIsum"]
             //*[@id="prcIsum"]
@@ -68,8 +68,8 @@ namespace Scrape_items_to_buy.Websites.Sites
             doc.LoadHtml(htmlBody);
             HtmlNode root = doc.DocumentNode;
             var nodes = root.SelectSingleNode("//*[@id=\"prcIsum\"]");
-            var price = Convert.ToInt32(Convert.ToDecimal(nodes.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
-            return price;
+            var price = Convert.ToInt32(Convert.ToDouble(nodes.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
+            return price*0.88;
         }
 
         public string GetProductTitle(string htmlBody)

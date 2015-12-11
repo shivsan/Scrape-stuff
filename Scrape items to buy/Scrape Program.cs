@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Scrape_items_to_buy.Websites.Sites;
 using Objects.Websites;
 using Objects.Websites.Sites;
@@ -13,13 +14,14 @@ namespace c
         {
             var listGames = GamesCSV.ReadGames(@"C:\Users\skumarsekar\Documents\Pet Projects\Scrape items to buy\Scrape items to buy\Files\PS4 games.txt");
             var ignoreList = IgnoreList.ReadIgnoreList(@"C:\Users\skumarsekar\Documents\Pet Projects\Scrape items to buy\Scrape items to buy\Files\Ignore List.txt");
-
+            
             foreach (var listGame in listGames)
             {
                 var websitesToSearch = GetAllWebsites();
-                int LowestRetailPrice = int.MaxValue;
+                double LowestRetailPrice = int.MaxValue;
                 Website lowestRetailWebsite;
-                Product lowestRetailProduct;
+                Product lowestRetailProduct = null;
+
                 foreach (var website in websitesToSearch)
                 {
                     var productName = listGame.GameName + " PS4";
@@ -45,6 +47,14 @@ namespace c
                     {
                         if (LowestRetailPrice < listGame.GamePrice)
                         {
+                            if (lowestRetailProduct != null)
+                            {
+                                if (MessageBox.Show(listGame.GameName, lowestRetailProduct.Price.ToString(), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                                {
+                                    System.Diagnostics.Process.Start(lowestRetailProduct.Url);
+                                }
+
+                            }
                             
                         }
                     }
