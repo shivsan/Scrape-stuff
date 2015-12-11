@@ -51,7 +51,7 @@ namespace Scrape_items_to_buy.Websites.Sites
                 var aHrefChild = node.ChildNodes["a"];
                 var title = aHrefChild.InnerText;
 
-                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
+                if (title.ToUpper().Contains("PS4") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
                     return aHrefChild.Attributes["href"].Value;
                 }

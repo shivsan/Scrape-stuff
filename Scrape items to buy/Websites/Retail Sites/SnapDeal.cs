@@ -53,7 +53,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             {
                 var title = node.SelectSingleNode("div[1]").InnerText.Trim();
 
-                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
+                if (title.ToUpper().Contains("PS4") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
                     var urlNode = node.SelectSingleNode("div[1]").ChildNodes["a"];
                     var gameTitle = urlNode.InnerText.Trim();

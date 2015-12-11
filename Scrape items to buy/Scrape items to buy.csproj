@@ -62,9 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="blat\blat.lib" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileUtils\FileUtils.csproj">
+      <Project>{b346c82c-fe00-49a1-86c8-10aca1ad86b5}</Project>
+      <Name>FileUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NameMatch\NameUtils.csproj">
       <Project>{5088f8b1-d151-45cb-9a17-df0e6c09402e}</Project>
       <Name>NameUtils</Name>
@@ -77,6 +82,13 @@
       <Project>{eb0497e8-a395-46b2-b4f9-e01444473c8c}</Project>
       <Name>Objects</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="blat\blat.dll" />
+    <Content Include="blat\blat.exe" />
+    <Content Include="blat\blatdll.h" />
+    <Content Include="Files\PS4 games.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

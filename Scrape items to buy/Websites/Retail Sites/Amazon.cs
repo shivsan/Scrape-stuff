@@ -51,7 +51,7 @@ namespace Scrape_items_to_buy.Websites.Sites
                     var aHrefChild = node.SelectSingleNode("//*[@id=\"result_0\"]/div/div/div/div[2]/div[1]").ChildNodes["a"];
                     var title = aHrefChild.Attributes["title"].Value;
 
-                    if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
+                    if (title.ToUpper().Contains("PS4") || title.ToUpper().Contains("PLAYSTATION") || title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                     {
                         return aHrefChild.Attributes["href"].Value;
                     }

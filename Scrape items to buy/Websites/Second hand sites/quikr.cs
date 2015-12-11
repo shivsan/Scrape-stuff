@@ -80,7 +80,7 @@ namespace Scrape_items_to_buy.Websites.Sites
                 var ad = node.SelectSingleNode("//h3[@class='adtitlesnb translate']");
                 var title = ad.InnerText;
 
-                if (title.ToUpper().Contains("PS3") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
+                if (title.ToUpper().Contains("PS4") || title.ToUpper().Contains("PLAYSTATION")||title.ToUpper().Contains("PLAY STATION") || title.ToUpper().Contains("SONY"))
                 {
                     var urlNode = ad.SelectSingleNode("a");
                     var gameTitle = urlNode.Attributes["title"].Value.Trim();
