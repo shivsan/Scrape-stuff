@@ -57,6 +57,7 @@
     <Compile Include="Websites\Retail Sites\Amazon.cs" />
     <Compile Include="Websites\Retail Sites\SnapDeal.cs" />
     <Compile Include="Websites\Retail Sites\FlipKart.cs" />
+    <Compile Include="Websites\Second hand sites\CEX.cs" />
     <Compile Include="Websites\Second hand sites\eBay.cs" />
     <Compile Include="Websites\Second hand sites\Olx.cs" />
     <Compile Include="Websites\Second hand sites\quikr.cs" />
@@ -89,6 +90,9 @@
     <Content Include="blat\blat.dll" />
     <Content Include="blat\blat.exe" />
     <Content Include="blat\blatdll.h" />
+    <Content Include="Files\Blacklist descriptions.txt" />
+    <Content Include="Files\Discounts.txt" />
+    <Content Include="Files\Ignore list.txt" />
     <Content Include="Files\PS4 games.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

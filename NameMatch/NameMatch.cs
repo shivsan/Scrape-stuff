@@ -31,11 +31,11 @@ namespace NameMatch
         {
             double overLapValue = int.MaxValue;
             Product bestProduct = null;
-            int lowestPrice = int.MaxValue;
+            double lowestPrice = int.MaxValue;
 
             foreach(var product in products)
             {
-                int price = product.Price;
+                double price = product.Price;
                 var hDistance = product.RetailName.ToLower().HammingDistance(productName.ToLower());
 
                 if (hDistance <= overLapValue 
@@ -59,8 +59,8 @@ namespace NameMatch
             int percentageOfAcceptance = 0;
             int wordsMatched = 0;
             char[] delimiters = new char[1] { ' ' };
-            List<string> splitWordsProduct = productName.ToLower().Replace("ps3", "").Split(delimiters).ToList().Where(w => !string.IsNullOrWhiteSpace(w)).ToList();
-            List<string> splitWordsTitle = titleName.ToLower().Replace("ps3", "").Split(delimiters).ToList().Where(w => !string.IsNullOrWhiteSpace(w)).ToList();
+            List<string> splitWordsProduct = productName.ToLower().Replace("PS4", "").Split(delimiters).ToList().Where(w => !string.IsNullOrWhiteSpace(w)).ToList();
+            List<string> splitWordsTitle = titleName.ToLower().Replace("PS4", "").Split(delimiters).ToList().Where(w => !string.IsNullOrWhiteSpace(w)).ToList();
             int totalWeightage = splitWordsTitle.Sum(w=>w.Length);
             int weightage = 0;
 
@@ -68,7 +68,7 @@ namespace NameMatch
             {
                 foreach (var splitWordProduct in splitWordsProduct)
                 {
-                    if(splitWordTitle.ToLower().Equals(splitWordProduct.ToLower()))
+                    if (splitWordTitle.ToLower().Equals(splitWordProduct.ToLower()) || splitWordProduct.ToLower().Contains(splitWordTitle.ToLower()) || splitWordTitle.ToLower().Contains(splitWordProduct.ToLower()))
                     {
                         wordsMatched++;
                         weightage += splitWordTitle.Length;

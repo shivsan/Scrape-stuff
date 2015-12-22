@@ -1,10 +1,8 @@
-Until Dawn,	1500
-Creed Black Flag,	1000
-The Order, 1200
-Creed Syndicate, 2000
-Uncharted, 2000
-Arkham knight, 1800
+Creed Black Flag, 800
+Creed Syndicate, 1500
+Uncharted, 1500
+Arkham knight, 1500
 Last of us, 1000
-the witcher, 1500
-Evolve, 1000
-Bloodborne, 1500
+witcher 3, 1500
+Evolve, 900
+infamous second son, 800

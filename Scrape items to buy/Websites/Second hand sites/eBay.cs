@@ -19,6 +19,10 @@ namespace Scrape_items_to_buy.Websites.Sites
             string pageURL = GetPageURL(response);
             var product = new Product();
             var webPageData = Web.GetHTTPResponse(pageURL);
+
+            if (BlackListDescription(webPageData))
+                return null;
+
             product.Price = GetPrice(webPageData);
             product.Url = pageURL;
             //product.RetailName = GetProductTitle(webPageData);
@@ -60,7 +64,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return string.Empty;
         }
 
-        public override double GetPrice(string htmlBody)
+        public double GetPrice(string htmlBody)
         {
             //*[@id="prcIsum"]
             //*[@id="prcIsum"]
@@ -69,7 +73,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             HtmlNode root = doc.DocumentNode;
             var nodes = root.SelectSingleNode("//*[@id=\"prcIsum\"]");
             var price = Convert.ToInt32(Convert.ToDouble(nodes.InnerHtml.Replace("Rs.", "").Replace(",", "").Replace(" ", "")));
-            return price*0.88;
+            return base.GetPrice(price, "ebay");
         }
 
         public string GetProductTitle(string htmlBody)

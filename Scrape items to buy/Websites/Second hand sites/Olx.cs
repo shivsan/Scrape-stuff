@@ -12,7 +12,7 @@ using NameUtils;
 
 namespace Scrape_items_to_buy.Websites.Sites
 {
-    //http://www.snapdeal.com/search/autoSuggestion?q=assassins+creed+revelations&catId=0&ver=3
+    
     public class Olx : Website
     {
         public override Product GetProduct()
@@ -27,6 +27,10 @@ namespace Scrape_items_to_buy.Websites.Sites
             string pageURL = GetPageURL(response);
             var product = new Product();
             var webPageData = Web.GetHTTPResponse(pageURL);
+
+            if (BlackListDescription(webPageData))
+                return null;
+
             product.Price = GetPrice(webPageData);
             product.Url = pageURL;
             //product.RetailName = GetProductTitle(webPageData);
@@ -84,7 +88,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             return bestProduct != null? bestProduct.Url : string.Empty;
         }
 
-        public override double GetPrice(string htmlBody)
+        public double GetPrice(string htmlBody)
         {
 
             var doc = new HtmlDocument();
@@ -92,7 +96,7 @@ namespace Scrape_items_to_buy.Websites.Sites
             HtmlNode root = doc.DocumentNode;
             var node = root.SelectSingleNode("//div[@class=\"pricelabel tcenter\"]/strong");            
             var price = Convert.ToInt32(node.InnerText);
-            return price;
+            return base.GetPrice(price, "olx");
         }
 
         public string GetProductTitle(string htmlBody)
