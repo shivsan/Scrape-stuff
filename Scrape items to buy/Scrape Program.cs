@@ -18,7 +18,7 @@ namespace c
             foreach (var listGame in listGames)
             {
                 var websitesToSearch = GetAllWebsites();
-                double LowestRetailPrice = int.MaxValue;
+                //double LowestRetailPrice = int.MaxValue;
                 Website lowestRetailWebsite;
                 Product lowestRetailProduct = null;
 
@@ -33,7 +33,7 @@ namespace c
                         var product = website.GetProduct();
 
 
-                        if (product != null && product.Price != 0 && product.Price < LowestRetailPrice)
+                        if (product != null && product.Price != 0)
                         {
                             if (
                                 ignoreList.Exists(
@@ -42,16 +42,12 @@ namespace c
 
                             lowestRetailProduct = product;
                             lowestRetailWebsite = website;
-                            LowestRetailPrice = product.Price;
-                        }
-                        else
-                        {
-                            LowestRetailPrice = int.MaxValue;
+                            
                         }
                     }
                     finally
                     {
-                        if (LowestRetailPrice < listGame.GamePrice)
+                        if (lowestRetailProduct != null && lowestRetailProduct.Price <= listGame.GamePrice)
                         {
                             if (lowestRetailProduct != null)
                             {
@@ -70,12 +66,12 @@ namespace c
 
         private static List<Website> GetAllWebsites()
         {
-            List<Website> websitesToSearch = new List<Website>();
+            var websitesToSearch = new List<Website>();
             //websitesToSearch.Add(new FlipKart());
             //websitesToSearch.Add(new Amazon());
             //websitesToSearch.Add(new SnapDeal());            
-            //websitesToSearch.Add(new Olx());
-            //websitesToSearch.Add(new eBay());
+            websitesToSearch.Add(new Olx());
+            websitesToSearch.Add(new eBay());
             websitesToSearch.Add(new CEX());
             return websitesToSearch;
         }
